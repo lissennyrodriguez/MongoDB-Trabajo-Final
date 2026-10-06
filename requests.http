@@ -1,0 +1,135 @@
+@baseUrl = http://localhost:3000
+
+### =========================
+### USERS
+### =========================
+
+### 1. Obtener todos los usuarios
+GET {{baseUrl}}/api/users
+
+### 2. Obtener usuario por ID
+GET {{baseUrl}}/api/users/6ac3032312ba235f1d20f80b
+
+### 3. Crear usuario
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Usuario HTTP",
+  "email": "usuario.http@gmail.com",
+  "role": "member"
+}
+
+### 4. Actualizar usuario
+PUT {{baseUrl}}/api/users/6ac3032312ba235f1d20f80b
+Content-Type: application/json
+
+{
+  "name": "Lissenny Rodriguez Actualizada"
+}
+
+### 5. Eliminar usuario
+DELETE {{baseUrl}}/api/users/6ac3032312ba235f1d20f80b
+
+
+### =========================
+### TEAMS
+### =========================
+
+### 6. Obtener todos los equipos
+GET {{baseUrl}}/api/teams
+
+### 7. Obtener equipo por ID
+GET {{baseUrl}}/api/teams/6ac30945edbee70a3a00600e
+
+### 8. Crear equipo
+POST {{baseUrl}}/api/teams
+Content-Type: application/json
+
+{
+  "name": "Equipo HTTP",
+  "description": "Equipo creado para probar la API"
+}
+
+### 9. Actualizar equipo
+PUT {{baseUrl}}/api/teams/6ac30945edbee70a3a00600e
+Content-Type: application/json
+
+{
+  "description": "Equipo backend actualizado"
+}
+
+### 10. Eliminar equipo
+DELETE {{baseUrl}}/api/teams/6ac30945edbee70a3a00600e
+
+
+### =========================
+### TASKS
+### =========================
+
+### 11. Obtener todas las tareas
+GET {{baseUrl}}/api/tasks
+
+### 12. Obtener tarea por ID
+GET {{baseUrl}}/api/tasks/6ac30965edbee70a3a00600f
+
+### 13. Crear tarea
+POST {{baseUrl}}/api/tasks
+Content-Type: application/json
+
+{
+  "title": "Tarea desde HTTP",
+  "description": "Probar endpoint de creación",
+  "status": "pending",
+  "priority": 3,
+  "team": "6ac30945edbee70a3a00600e"
+}
+
+### 14. Actualizar tarea
+PUT {{baseUrl}}/api/tasks/6ac30965edbee70a3a00600f
+Content-Type: application/json
+
+{
+  "status": "completed"
+}
+
+### 15. Eliminar tarea
+DELETE {{baseUrl}}/api/tasks/6ac30965edbee70a3a00600f
+
+
+### =========================
+### CONSULTA AVANZADA
+### =========================
+
+### Filtrar por estado, ordenar por prioridad y paginar
+GET {{baseUrl}}/api/tasks?status=pending&sort=-priority&page=1&limit=10
+
+
+### =========================
+### PRUEBAS DE ERRORES
+### =========================
+
+### 400 - ID inválido
+GET {{baseUrl}}/api/users/123
+
+### 400 - Error de validación
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Usuario Sin Email",
+  "role": "member"
+}
+
+### 404 - Usuario no encontrado
+GET {{baseUrl}}/api/users/000000000000000000000000
+
+### 409 - Email duplicado
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Usuario Duplicado",
+  "email": "lissenny.test@gmail.com",
+  "role": "member"
+}
